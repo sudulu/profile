@@ -42,7 +42,6 @@ gem 'cancan'
 
 
 # form 
-
 gem 'simple_form'
 gem 'nested_form'
 gem 'paperclip', '~> 4.2'
@@ -61,6 +60,8 @@ gem 'meta-tags'
 
 #exception handling 
 gem 'exception_notification', '~> 4.0.1'
+
+gem 'redis-rails' 
 
 platforms :ruby do 
 	gem 'unicorn'
