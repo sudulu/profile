@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 
 # styling
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -20,9 +19,10 @@ gem 'jquery-ui-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+# gem 'coffee-rails', '~> 4.0.0',  platforms: :ruby
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer',  platforms: :ruby
+
+gem 'coffee-script-source', '1.9.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -64,9 +64,14 @@ gem 'exception_notification', '~> 4.0.1'
 gem 'redis-rails' 
 
 platforms :ruby do 
+	gem 'therubyracer'
 	gem 'unicorn'
+	gem 'pg'
+	gem 'postgres_ext'
 end
 platforms :mswin, :mingw do
+	# Use sqlite3 as the database for Active Record
+	gem 'sqlite3'
 	gem 'thin'
 	# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 	gem 'tzinfo-data'
