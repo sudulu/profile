@@ -15,14 +15,13 @@ gem 'fancybox2-rails'
 # browser support
 gem 'html5-rails'
 gem 'jquery-ui-rails' 
-
+gem 'haml-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-# gem 'coffee-rails', '~> 4.0.0',  platforms: :ruby
+gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-
-gem 'coffee-script-source', '1.9.0'
+#gem 'coffee-script-source', '1.9.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -62,29 +61,22 @@ gem 'meta-tags'
 gem 'exception_notification', '~> 4.0.1'
 
 gem 'redis-rails' 
-
-platforms :ruby do 
-	gem 'therubyracer'
-	gem 'unicorn'
-	gem 'pg'
-	gem 'postgres_ext'
-end
-platforms :mswin, :mingw do
-	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3'
-	gem 'thin'
-	# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-	gem 'tzinfo-data'
-end
+ 
+gem 'therubyracer'
+gem 'pg'
+gem 'postgres_ext'
 
 group :development, :test do
-	gem	'byebug'
+	gem 'byebug'
 	gem 'simplecov'
  	gem 'factory_girl_rails', '~> 4.0'
  	gem 'rspec-rails', '~>3.0'
 	gem 'capybara'
+	gem 'thin'
 end
-
+group :production do 
+	gem 'unicorn'
+end
 group :development do
 	# Use Capistrano for deployment
 	gem 'capistrano-rails', group: :development
