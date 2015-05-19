@@ -7,10 +7,16 @@ Rails.application.routes.draw do
 
 
   resources :pages 
-
+  resources :donations do
+    get 'complete', on: :collection
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  # get '/:title' => 'pages#show'
 
+  # get '/donation', to: 'donations#new', as: :donation
+  # post '/donation', to: 'donation#create'
+  # # post 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

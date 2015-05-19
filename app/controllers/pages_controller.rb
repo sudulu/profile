@@ -5,6 +5,8 @@ class PagesController < ApplicationController
 	end
 
 	def show
+		# raise "#{params}"
+		render params[:title]
 		# @page = Page.find_by_title(params[:page])
 	end
 end

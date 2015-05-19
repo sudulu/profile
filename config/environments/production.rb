@@ -78,4 +78,5 @@ Rails.application.configure do
 
   # redis
   config.cache_store = :redis_store, 'unix:/var/run/redis/redis.sock'
+  
 end

@@ -1,0 +1,52 @@
+%section#donation
+	.container
+		.row
+			.col-md-6
+				%h2
+					Donate below
+				#payment-form
+					=simple_form_for @donation,html: { class: 'form-horizontal' } , defaults: {input_html: { class: 'form-control' }} do |f|
+						=f.input :amount
+						=f.input :credit_card_number, input_html: {"data-stripe" => 'number'}
+						=f.input :first_name
+						=f.input :last_name
+						=f.input :month, input_html: {"data-stripe" => 'exp-month'}
+						=f.input :year, input_html: {"data-stripe" => 'exp-year'}
+						=f.input :verification_value, input_html: {"data-stripe" => 'cvc'}
+						=f.input :email
+						=f.submit
+				%span.payment-errors
+				.alert.alert-error=flash[:error] if flash[:error].present? 
+=content_for :javascript do
+	=javascript_include_tag 'https://js.stripe.com/v2/', 'data-turbolinks-track' => true
+	:javascript
+		Stripe.setPublishableKey("#{Rails.configuration.stripe[:publishable_key]}");
+		$(function($) {
+			$('#new_donation').submit(function(event) {
+			var $form = $(this);
+			// Disable the submit button to prevent repeated clicks
+			$form.find('button').prop('disabled', true);
+			Stripe.card.createToken($form, stripeResponseHandler);
+			// Prevent the form from submitting with the default action
+			return false;
+			});
+		});
+
+		function stripeResponseHandler(status, response) {
+
+			var $form = $('#new_donation');
+			if (response.error) {
+				// Show the errors on the form
+				console.log(response.error.message)
+				$('.payment-errors').text(response.error.message);
+				$form.find('button').prop('disabled', false);
+			} else {
+				// response contains id and card, which contains additional card details
+				var token = response.id;
+				alert(token)
+				// Insert the token into the form so it gets submitted to the server
+				$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+				// and submit
+				var a = $form.unbind().submit();
+			}
+		};

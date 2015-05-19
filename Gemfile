@@ -10,8 +10,9 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'font-awesome-rails'
 gem 'fancybox2-rails'
-# gem 'compass-rails'
-# gem 'compass-h5bp'
+gem "autoprefixer-rails"
+gem 'compass-rails'
+gem 'compass-h5bp'
 # browser support
 gem 'html5-rails'
 gem 'jquery-ui-rails' 
@@ -65,6 +66,13 @@ gem 'redis-rails'
 gem 'therubyracer'
 gem 'pg'
 gem 'postgres_ext'
+
+# money gateway
+
+gem 'activemerchant'
+gem 'credit_card_validator'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 
 group :development, :test do
 	gem 'byebug'
