@@ -5,12 +5,12 @@ class DonationsController < ApplicationController
 
 		token = params[:stripeToken]
 		begin
-		  # charge = Stripe::Charge.create(
-		  #   :amount => (@donation.amount.to_f*100).to_i, # amount in cents, again
-		  #   :currency => "aud",
-		  #   :source => token,
-		  #   :description => "Donation charge"
-		  # )
+		  charge = Stripe::Charge.create(
+		    :amount => (@donation.amount.to_f*100).to_i, # amount in cents, again
+		    :currency => "aud",
+		    :source => token,
+		    :description => "Donation charge"
+		  )
 		rescue Exception  => e
 			flash[:error] = "Donation is failed. Please try again."
 			@donation = Donation.new

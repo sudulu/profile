@@ -1,7 +1,7 @@
 %section#donation
 	.container
 		.row
-			.col-md-6
+			.col-md-2
 				%h2
 					Donate below
 				#payment-form
@@ -14,7 +14,7 @@
 						=f.input :year, input_html: {"data-stripe" => 'exp-year'}
 						=f.input :verification_value, input_html: {"data-stripe" => 'cvc'}
 						=f.input :email
-						=f.submit
+						=f.submit :class => 'btn btn-default'
 				%span.payment-errors
 				.alert.alert-error=flash[:error] if flash[:error].present? 
 =content_for :javascript do
